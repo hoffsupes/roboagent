@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/robot.h
+
+../include/world.h
+vector
+-
+robot.h
+../include/robot.h
+mutex
+-
+unordered_map
+-
+
+/home/xorin/work/roboagents/src/main.cpp
+world.h
+/home/xorin/work/roboagents/src/world.h
+robot.h
+/home/xorin/work/roboagents/src/robot.h
+iostream
+-
+vector
+-
+
