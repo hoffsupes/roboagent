@@ -24,5 +24,7 @@ mkdir build && cd build && cmake .. && make
 ### Important methods
 
 `addRobot`: Adds a robot
+
 `removeRobot`: Removes a robot
+
 `runWorld`: Runs the world
