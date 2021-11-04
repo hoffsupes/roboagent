@@ -25,12 +25,22 @@ World::World(vector<vector<char> > map) {
 
 void World::run() {
   // run the display in a loop with a "global tick"
-  while (true) {
+  while (!stop_sim) {
 
     display();
     std::this_thread::sleep_for(std::chrono::milliseconds(display_time));
 
   }
+}
+
+void World::stopSimulation(){ // runs on a separate thread to check for character input, if it finds ESC, then sets a flag which breaks all loops
+  char ch;
+  while(!stop_sim){ // run another loop which listens in for user input
+  cin.get(ch);
+  if(ch == 'q' || ch == 'Q'){
+    stop_sim = true;
+  }
+}
 }
 
 void World::zeroOutCurrentPosition(Robot&robot){
@@ -115,7 +125,7 @@ bool World::moveRobot(Robot &robot){
 
 void World::roboRunner(Robot &robot){
   // overall runner for the robots, move them!
-  while(true)
+  while(!stop_sim)
   {
     bool moved = moveRobot(robot);  // move robot
     std::this_thread::sleep_for(std::chrono::milliseconds(robot.getMoveTime()));    // robot speed or rate of "tick" decided by delay in robot
@@ -133,6 +143,7 @@ void World::runWorld(){
       threads.emplace_back(&World::roboRunner,this,ref(robo_it.second));   // push all robot objects to be processed by different threads on robotunner with separate "ticks"
   }
   threads.emplace_back(&World::run, this);  // global "tick" with much much faster refresh rate, @ one frame per 5 milliseconds by default
+  threads.emplace_back(&World::stopSimulation, this); // to stop the simulation on a button press, a separate thread for detecting keypresses
 
   for(i = 0; i < threads.size(); i++){
     threads[i].join();

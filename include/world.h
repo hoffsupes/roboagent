@@ -5,6 +5,7 @@
 #include "robot.h"
 #include <mutex>
 #include <unordered_map>
+#include <atomic>
 
 
 using namespace std;  // using standard namespace, single inclusion usable everywhere
@@ -20,6 +21,7 @@ private:
   int display_time = 5; // refresh rate or delay in "global tick"
   mutex map_mutex;  // mutex so that shared map_ is not accessed wrongfully by two threads at once
   unordered_map<int,Robot> robots;   //  vector of robot objects, to collect and keep track of robots
+  atomic_bool stop_sim{false};  // stops the simulation using a common flag shared amongst all threads
  public:
   bool debug_flag = false; // debugging flag can be set by user to display extra output
   World();  // default constructor
@@ -33,6 +35,7 @@ private:
   bool updateRobotPosition(Robot&robot,int row,int col);    //  update robot position to new one
   bool moveRobot(Robot &robot);   //  move one robot
   void roboRunner(Robot &robot);    //  start moving robots!
+  void stopSimulation();
 };
 
 #endif

@@ -17,6 +17,8 @@ mutex
 -
 unordered_map
 -
+atomic
+-
 
 /home/xorin/work/roboagents/src/main.cpp
 world.h
@@ -26,5 +28,17 @@ robot.h
 iostream
 -
 vector
+-
+
+/home/xorin/work/roboagents/src/world.cpp
+iostream
+-
+thread
+-
+chrono
+-
+world.h
+/home/xorin/work/roboagents/src/world.h
+cstdlib
 -
 
