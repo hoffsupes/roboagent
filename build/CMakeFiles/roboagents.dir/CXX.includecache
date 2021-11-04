@@ -30,6 +30,14 @@ iostream
 vector
 -
 
+/home/xorin/work/roboagents/src/robot.cpp
+robot.h
+/home/xorin/work/roboagents/src/robot.h
+cstdlib
+-
+iostream
+-
+
 /home/xorin/work/roboagents/src/world.cpp
 iostream
 -

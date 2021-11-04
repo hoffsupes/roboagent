@@ -143,7 +143,7 @@ void World::runWorld(){
       threads.emplace_back(&World::roboRunner,this,ref(robo_it.second));   // push all robot objects to be processed by different threads on robotunner with separate "ticks"
   }
   threads.emplace_back(&World::run, this);  // global "tick" with much much faster refresh rate, @ one frame per 5 milliseconds by default
-  threads.emplace_back(&World::stopSimulation, this); // to stop the simulation on a button press, a separate thread for detecting keypresses
+  threads.emplace_back(&World::stopSimulation, this); // to stop the simulation on a button press, a separate thread for listening in on keypresses
 
   for(i = 0; i < threads.size(); i++){
     threads[i].join();
