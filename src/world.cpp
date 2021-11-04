@@ -44,6 +44,7 @@ void World::stopSimulation(){ // runs on a separate thread to check for characte
 }
 
 void World::zeroOutCurrentPosition(Robot&robot){
+  lock_guard<mutex> map_guarder(map_mutex);
   int r,c;
   robot.getPosition(r,c); // get current (past) position of robot
   map_[r][c] = '0'; //  set it to unobstructed or free the position that the robot was previously in
